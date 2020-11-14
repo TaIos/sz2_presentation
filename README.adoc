@@ -1,0 +1,3 @@
+== NI-SZ2 presentation about GAN
+
+* link:./media/gan_dissection_visualizing_and_understanding_generative_adversarial_networks.pdf[Paper]
