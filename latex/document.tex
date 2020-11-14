@@ -1,0 +1,117 @@
+% kompilace xelatex prezentace.tex
+% dokumentace k beameru: http://ftp.cvut.cz/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf
+
+% nastavení formátu prezentace 16:9
+\documentclass[czech,aspectratio=169]{beamer}
+
+\usepackage{polyglossia}
+\setmainlanguage{czech}
+
+% nastavení vzhledu
+% další možnosti vzhledu viz https://hartwork.org/beamer-theme-matrix/
+\usetheme{Madrid}
+\usecolortheme{whale}
+\usepackage{subfig}
+
+% for setting different borders
+\usepackage{geometry}
+
+% left, right v includegraphics
+\usepackage[export]{adjustbox}
+
+\usepackage{media9} % prehravani videa
+
+% vzhled slajdů vnitřní téma (např. vzhled odrážek)
+\useinnertheme{rectangles} %možnosti: default circles rectangles rounded inmargin
+% vzhled slajdů vnější téma
+\useoutertheme{default} %možnosti: default, miniframes, smoothbars, sidebar, split, shadow, tree, smoothtree, infolines
+
+% zavedeme čvutí modou barvu
+\definecolor{CVUT}{HTML}{0065BD}
+% čvutí modou použijeme jako hlavní barvu prezentace
+\setbeamercolor{structure}{bg=white,fg=CVUT}
+
+% jako font prezentace nadefinujeme oficiální ČVUT písmo Technika -- pokud chcete použít, musíte si font nainstalovat nebo jej nahrát na Overleaf
+% https://www.cvut.cz/logo-a-graficky-manual  -- inforek, přihlášení přes celoškolské heslo
+%\usepackage{fontspec}
+%\setsansfont{Technika-Kniha}
+
+% vypneme navigační panel beamer (pro zapnutí zakomentujeme)
+\beamertemplatenavigationsymbolsempty
+
+% vygenerujeme slajdy s poznámkami -- ty si můžete vytisknout a mít je na obhajobu s sebou (pokud zapomenete slova, nebo kdyby nefungovalo promítání z nějakého důvodu)
+%\setbeameroption{show notes}
+
+% vygeneruje slajdy s poznámky vhodné pro promítání na dvou monitorech -- na obhajobu nevyužijete
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen}
+
+% variable block width
+\newenvironment<>{varblock}[2][.9\textwidth]{%
+	\setlength{\textwidth}{#1}
+	\begin{actionenv}#3%
+		\def\insertblocktitle{#2}%
+		\par%
+		\usebeamertemplate{block begin}}
+	{\par%
+		\usebeamertemplate{block end}%
+\end{actionenv}}
+
+% fromat datumu
+\usepackage[style=dmyyyy,datesep={.}]{datetime2}
+
+% další balíčky
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{chains,fit,shapes}
+
+% Údaje o prezentaci
+\title[GAN Dissection]{GAN Dissection: Visualizing and Understanding Generative Adversarial Networks}
+\institute[FIT CTU]{Faculty of Information Technology \\ Czech Technical University in Prague}
+\author[M. Šafránek]{Martin Šafránek}
+%\date{\today}
+\date{}
+\titlegraphic{\includegraphics[width=.1\textwidth]{../media/logo-cvut}}
+
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+	\note{Nezapomenout pozdravit} %tohle je poznámka, ta na slajdu nebude, ale vygeneruje se vedle něj, pokud odkomentujete příkaz výše -- \setbeameroption{show notes}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Parts}
+	\begin{itemize}
+		\item GAN overview
+		\item GAN dissection (paper)
+	\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{GAN overview}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	How does GAN work
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{GAN dissection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	How does GAN work inside
+\end{frame}
+
+
+
+\end{document}
