@@ -96,11 +96,28 @@
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{GAN overview}
+\section{GAN introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}
-	How does GAN work
+\begin{frame}{Adversarial Nets Framework}
+	\centering
+	\includegraphics[width=0.8\textheight]{../media/gan_architecture.pdf}
+\end{frame}
+
+\begin{frame}{Minimax Game}
+	\begin{figure}
+		$$
+		J^{\left( D \right)} = - \dfrac{1}{2}\mathbb{E}_{x\~{}p_{\rm data}} \, \mathrm{log} \, D(x) - \dfrac{1}{2}\mathbb{E}_z \, \mathrm{log} \, (1-D(G(z)))
+		$$
+		$$
+		J^{G} = -J^{D}
+		$$
+	\end{figure}
+	\begin{itemize}
+		\item Generator minimizes the log-probability of the discriminator
+		being correct
+		\item Equilibrium if the discriminator is unable to differentiate between real and generated input
+	\end{itemize}
 \end{frame}
 
 
@@ -108,8 +125,26 @@
 \section{GAN dissection}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}{The paper}
+	\begin{itemize}
+		\item presents method for visualizing and understanding GAN
+		\item learned GAN contains variables for doors, trees, ...
+		\item can interactively manipulate objects in a scene
+	\end{itemize}
+\end{frame}k
+
+
 \begin{frame}
-	How does GAN work inside
+	\centering
+	\begin{figure}
+		\includegraphics[width=1.3\textheight]{../media/figure_overview}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Method}
+	\begin{itemize}
+		\item
+	\end{itemize}
 \end{frame}
 
 
