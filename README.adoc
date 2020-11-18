@@ -2,3 +2,4 @@
 
 * link:./media/gan_dissection_visualizing_and_understanding_generative_adversarial_networks.pdf[Paper]
 * link:./latex/document.pdf[Presentation]
+* explanatory https://www.youtube.com/watch?v=1Gr1t8EgMD0&feature=youtu.be[video] by authors
