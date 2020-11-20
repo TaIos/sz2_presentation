@@ -19,6 +19,8 @@
 % left, right v includegraphics
 \usepackage[export]{adjustbox}
 
+\usepackage{csquotes}
+
 \usepackage{media9} % prehravani videa
 
 % vzhled slajdů vnitřní téma (např. vzhled odrážek)
@@ -122,14 +124,15 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{GAN dissection}
+\section{GAN dissection paper}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}{The paper}
 	\begin{itemize}
 		\item presents method for visualizing and understanding GAN
-		\item learned GAN contains variables for doors, trees, ...
-		\item can interactively manipulate objects in a scene
+		\item assumes GAN generator is implemented as Convolutional neural network
+		\item presents that learned GAN contains variables for doors, trees, ...
+		\item shows how we can interactively manipulate objects in a scene
 	\end{itemize}
 \end{frame}
 
@@ -141,21 +144,96 @@
 	\end{figure}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Method}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{frame}{Dissection architecture}
+\begin{frame}{Architecture}
 	\centering
 	\begin{figure}
-		\includegraphics[width=1.2\textheight]{../media/dissection_architecture}
+		\includegraphics[width=1.2\textheight]{../media/paper_architecture}
 	\end{figure}
 \end{frame}
 
+\begin{frame}{Dissection}
+		
+\end{frame}
+
+\begin{frame}{Intervention}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Interpretable units for different scene categories}
+	\centering
+	\begin{figure}
+		\includegraphics[width=\textwidth]{../media/figure5-left}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Interpretable units for different network layers}
+	\centering
+	\begin{figure}
+		\includegraphics[height=0.85\textheight]{../media/figure6}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Diagnosing and improving GANs}
+		\begin{itemize}
+			\item identify artifacts with human annotation
+			\item 10 minutes to locate 20 artifact-causing units
+			\item ablate found artifacts
+		\end{itemize}
+	\centering
+	\begin{figure}
+		\includegraphics[height=0.6\textheight]{../media/figure8}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}{Locating casual units with ablation}
+		\begin{itemize}
+			\item force erasing/size reduction
+			\item Does GAN learns patterns ? eg \enquote{\textit{All bedrooms must have windows.}}
+		\end{itemize}
+		\begin{figure}
+			\includegraphics[height=0.7\textheight]{../media/figure10}
+		\end{figure}
+\end{frame}
+
+\begin{frame}{Characterizing contextual relationships via insertion}
+	\begin{itemize}
+		\item force insertion of features into specific locations in scenes
+		\item GAN forces realtionships eg \enquote{\textit{Doors can't be added to sky.}}, because the choice is vetoed later
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[height=0.7\textheight]{../media/figure11}
+	\end{figure}
+\end{frame}
 
 \begin{frame}{Interactive toolkit}
 	\centering
 	\begin{figure}
 		\includegraphics[width=1.2\textheight]{../media/ganter_screenshot.png}
-		 \small \url{http://gandissect.res.ibm.com/ganpaint.html}
+		\small \url{http://gandissect.res.ibm.com/ganpaint.html}
 	\end{figure}
+\end{frame}
+
+\begin{frame}{Further reasearch suggested by authors}
+	\begin{enumerate}
+		\item \enquote{\textit{Why can a door not be inserted in the sky ?}}
+		\item \enquote{\textit{How does GAN suppress the signal in the later layers ?}}
+		\item \enquote{\textit{What are the relationships between layers of a GAN ?}}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+	\centering
+	{\Huge Questions ?}
 \end{frame}
 
 \end{document}
