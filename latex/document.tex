@@ -13,6 +13,8 @@
 \usecolortheme{whale}
 \usepackage{subfig}
 
+\usepackage{caption}
+
 % for setting different borders
 \usepackage{geometry}
 
@@ -147,6 +149,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Method}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}{Terminology}
+	\begin{itemize}
+		\item function $\textbf{G}: z \rightarrow x$ (generator $G$ generates image $x$ from latent vector $z$)
+		\item tensor $\textbf{r}$, where $r=h(z), x=f(r)=f(h(z)) = G(z)$ (featuremaps)
+		\item $r$ has all the data neccessary to produce image $x$
+		\item concept $\textbf{c} \in \mathbb{C}$ (chair, door, ...)
+		\item $\textbf{r}_{\mathbb{U}, P} = ( r_{U,P}, r_{\overline{U}, P}  )$
+		\item \textbf{$U$} selected featuremaps (units)
+
+	\end{itemize}
+\begin{figure}[b!]
+	\includegraphics[height=0.26\textheight]{../media/covnet}
+	\captionsetup{labelformat=empty}
+	\caption{Covnet example \href{https://ars.els-cdn.com/content/image/1-s2.0-S0933365716305206-gr2.jpg}{\scriptsize {[Source]}}}
+\end{figure}
+\end{frame}
 
 \begin{frame}{Architecture}
 	\centering
