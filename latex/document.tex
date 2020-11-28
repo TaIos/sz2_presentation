@@ -184,8 +184,6 @@
 				\item which units correlate with which concept
 				\item semantic segmentation $s_c(x)$ of generated image $x$
 			\end{itemize}
-
-
 			\begin{enumerate}
 				\item Upsample unit to output image resolution
 				      \begin{itemize}
@@ -214,7 +212,7 @@
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\begin{enumerate}
-				\setcounter{enumi}{1}
+				\setcounter{enumi}{2}
 				\item Compute IoU score
 				      \begin{itemize}
 					      \item label each concept with unit that matches it best (largest IoU score)
@@ -236,40 +234,81 @@
 
 
 
-\begin{frame}{Intervention 1/2}
+\begin{frame}{Intervention 1/3}
+
+
 	\begin{itemize}
 		\item unit that correlates highly with a generated ouput might not cause it's generation
 		\item intervention identifies combination of units that cause object generation
+		      \begin{itemize}
+			      \item select set of units $U$ and concept $c$ from image $\rightarrow$ force $U$ on/off $ \rightarrow$ is $c$ still present ?
+		      \end{itemize}
 	\end{itemize}
 
-	\begin{enumerate}
-		\item select some units and one concept
-		\item force units on/off
-		\item measure See if concept appears/disappears
-	\end{enumerate}
-
 	\begin{figure}
-		\includegraphics[height=0.23\textheight]{../media/eq3}
+		\captionsetup{labelformat=empty}
+		\includegraphics[width=0.7\textwidth]{../media/intervention_architecture}
+		\caption{Intervention architecture}
 	\end{figure}
+
 \end{frame}
 
-\begin{frame}{Intervention 2/2 — Finding sets of units with high ACE}
+\begin{frame}{Intervention 2/3}
+	\begin{enumerate}
+		\item force units $U$ on position $P$ on/off
 
-	\begin{itemize}
-		\item Average causal effect (ACE): $\delta_{U \rightarrow c} \equiv \mathbb{E}_{z, P}[s_c(x_i)] - \mathbb{E}_{z, P}[s_c(x_a)]$
-		\item ineffective, as there are $\binom{d}{|U|}$ subsets
-		\item instead optimize $\alpha \in [0, 1]^d$
-	\end{itemize}
-	\begin{figure}
-		\includegraphics[height=0.23\textheight]{../media/eq5}
+		      \begin{itemize}
+			      \item an object is caused by $U$ if the object appears in $x_i$ and disappears from $x_a$
+		      \end{itemize}
+
+	\end{enumerate}
+
+	\begin{figure}[b]
+		\includegraphics[]{../media/eq3}
 	\end{figure}
 
+	\begin{figure}
+		\centering
+		\subfloat[Original image]{\includegraphics[height=0.35\textheight]{../media/church_orig}}
+		\hspace{1pt}
+		\subfloat[Units that match trees (dissection)]{\includegraphics[height=0.35\textheight]{../media/church_dissection}}
+		\hspace{1pt}
+		\subfloat[Ablating tree units]{\includegraphics[height=0.35\textheight]{../media/church_removed}}
+		\hspace{1pt}
+		\subfloat[Inserting tree units]{\includegraphics[height=0.35\textheight]{../media/church_added}}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{Intervention 3/3 — Finding sets of units with high ACE}
+	\begin{enumerate}
+		\setcounter{enumi}{1}
+		\item Measure average causal effect (ACE)
+	\end{enumerate}
+
+	\begin{itemize}
+		\item ACE: \includegraphics[]{../media/ace_def}
+		\item ineffective, as there are $\binom{d}{|U|}$ subsets
+		\item instead optimize $\alpha \in [0, 1]^d$
+		      \begin{figure}
+			      \includegraphics[]{../media/eq5}
+		      \end{figure}
+		\item optimize with L2 loss: \includegraphics[]{../media/l2_reg}
+		\item rank units by $\alpha_{u}^{*}$ and achieve stronger casual effect
+	\end{itemize}
 \end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\centering
+	{\Huge Results}
+\end{frame}
+
+
 
 \begin{frame}{Interpretable units for different scene categories}
 	\centering
