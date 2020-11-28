@@ -176,33 +176,62 @@
 	\end{figure}
 \end{frame}
 
-\begin{frame}{Dissection}
-	Which units correlate with which context
-	\begin{enumerate}
-		\item Upsample unit to output image resolution
-		\item Threshold unit
-		\item Compute IoU score
-	\end{enumerate}
+\begin{frame}{Dissection 1/2}
 
-	threshold is computed by maximizing information quality ratio $I/H$
-
-	label each concept with unit that matches it best (largest IoU score)
-
-
-	\begin{columns}
+	\begin{columns}[t]
 		\begin{column}{.5\textwidth}
-			$$
-				IoU_{u, c} \equiv \frac{\mathbb{E}_z|(r^{\uparrow}_{u, \mathbb{P}} > t_{u, c} )\land s_c(x)|}{\mathbb{E}_z|(r^{\uparrow}_{u, \mathbb{P}} > t_{u, c} )\lor s_c(x)|} \subseteq [0,1]
-			$$
+			\begin{itemize}
+				\item which units correlate with which concept
+				\item semantic segmentation $s_c(x)$ of generated image $x$
+			\end{itemize}
+
+
+			\begin{enumerate}
+				\item Upsample unit to output image resolution
+				      \begin{itemize}
+					      \item using bilinear interpolation
+				      \end{itemize}
+				\item Threshold unit
+				      \begin{itemize}
+					      \item  constant $t_{u,c}$ same for each concept $c$
+					      \item learned by maximizing Information Quality Ratio (IQR) on validation set
+				      \end{itemize}
+			\end{enumerate}
+
 		\end{column}
 		\begin{column}{.5\textwidth}
+
 			\begin{figure}
-				\includegraphics[height=0.4\textheight]{../media/iou_equation}
 				\captionsetup{labelformat=empty}
-				\caption{ \href{https://www.pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/}{\scriptsize {Source}}}
+				\includegraphics[height=0.45\textheight]{../media/dissection_architecture}
+				\caption{Dissection architecture}
 			\end{figure}
 		\end{column}
 	\end{columns}
+\end{frame}
+
+\begin{frame}{Dissection 2/2}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\begin{enumerate}
+				\setcounter{enumi}{1}
+				\item Compute IoU score
+				      \begin{itemize}
+					      \item label each concept with unit that matches it best (largest IoU score)
+				      \end{itemize}
+			\end{enumerate}
+			\includegraphics[]{../media/ioc_formula}
+		\end{column}
+		\begin{column}{.5\textwidth}
+			\begin{figure}
+				\includegraphics[height=0.33\textheight]{../media/iou_equation}
+
+			\end{figure}
+		\end{column}
+	\end{columns}
+	\begin{figure}
+		\includegraphics[height=0.4\textheight]{../media/ioc_score}
+	\end{figure}
 \end{frame}
 
 
@@ -232,8 +261,8 @@
 		\item instead optimize $\alpha \in [0, 1]^d$
 	\end{itemize}
 	\begin{figure}
-	\includegraphics[height=0.23\textheight]{../media/eq5}
-\end{figure}
+		\includegraphics[height=0.23\textheight]{../media/eq5}
+	\end{figure}
 
 \end{frame}
 
