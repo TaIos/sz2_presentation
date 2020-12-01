@@ -111,12 +111,7 @@
 
 \begin{frame}{Minimax Game}
 	\begin{figure}
-		$$
-			J^{\left( D \right)} = - \dfrac{1}{2}\mathbb{E}_{x\~{}p_{\rm data}} \, \mathrm{log} \, D(x) - \dfrac{1}{2}\mathbb{E}_z \, \mathrm{log} \, (1-D(G(z)))
-		$$
-		$$
-			J^{G} = -J^{D}
-		$$
+		\includegraphics[width=0.9\textwidth]{../media/gan_minimax}
 	\end{figure}
 	\begin{itemize}
 		\item Generator minimizes the log-probability of the discriminator
@@ -154,18 +149,22 @@
 
 \begin{frame}{Terminology}
 	\begin{itemize}
-		\item function $\textbf{G}: z \rightarrow x$ (generator $G$ generates image $x$ from latent vector $z$)
-		\item tensor $\textbf{r}$, where $r=h(z), x=f(r)=f(h(z)) = G(z)$ (featuremaps)
-		\item $r$ has all the data neccessary to produce image $x$
+		\item tensor $r$ – output from the layer of a generator (featuremap)
+		      \begin{itemize}
+			      \item $r$ has all the data neccessary to produce output image $x$
+		      \end{itemize}
+	    \item unit – channel of the featuremap
 		\item concept $\textbf{c} \in \mathbb{C}$ (chair, door, ...)
-		\item $\textbf{r}_{\mathbb{U}, P} = ( r_{U,P}, r_{\overline{U}, P}  )$
-		\item \textbf{$U$} selected featuremaps (units)
+		      \begin{itemize}
+			      \item segmented using external tool (\textasciitilde 300 concepts)
+		      \end{itemize}
+		\item $\textbf{r}_{\mathbb{U}, P} = ( r_{U,P}, r_{\overline{U}, P}  )$ – featuremap factorization
 
 	\end{itemize}
 	\begin{figure}[b!]
-		\includegraphics[height=0.26\textheight]{../media/covnet}
+		\includegraphics[height=0.45\textheight]{../media/gen_covnet2}
 		\captionsetup{labelformat=empty}
-		\caption{Covnet example \href{https://ars.els-cdn.com/content/image/1-s2.0-S0933365716305206-gr2.jpg}{\scriptsize {[Source]}}}
+		\caption{GAN generator layers \href{https://machinelearningmastery.com/how-to-train-stable-generative-adversarial-networks/}{\scriptsize {[Source]}}}
 	\end{figure}
 \end{frame}
 
@@ -288,7 +287,10 @@
 
 	\begin{itemize}
 		\item ACE: \includegraphics[]{../media/ace_def}
-		\item ineffective, as there are $\binom{d}{|U|}$ subsets
+		\begin{itemize}
+			\item $s_c(x)$  segmentation indicating the presence of class $c$ in the image $x$ at $P$
+		\end{itemize}
+		\item ineffective, as there are $\binom{d}{|U|}$ subsets for every $d \in \{1, \ldots, |U|\}$
 		\item instead optimize $\alpha \in [0, 1]^d$
 		      \begin{figure}
 			      \includegraphics[]{../media/eq5}
@@ -362,7 +364,7 @@
 	\centering
 	\begin{figure}
 		\includegraphics[width=1.2\textheight]{../media/ganter_screenshot.png}
-		\small \url{http://gandissect.res.ibm.com/ganpaint.html}
+		\small \url{https://gandissect.csail.mit.edu/}
 	\end{figure}
 \end{frame}
 
